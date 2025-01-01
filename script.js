@@ -26,7 +26,10 @@ let militaryActions = {
   allies: [],
   enemies: []
 };
-let countryTraits = {};
+let countryTraits = {
+    stability: 100 || 0,
+    technology: 50 || 0,
+}
 let newsArticles = [];
 const newsTemplates = {
   war: (country1, country2) => ({
