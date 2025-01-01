@@ -1,0 +1,151 @@
+<html><head><base href="." target="_blank">
+  <meta charset="UTF-8">
+  <title>Map Masters</title>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="game-header">
+  <h1 class="game-title">Map Masters</h1>
+  <div class="header-controls">
+    <div class="header-buttons">
+      <button onclick="openShop()">Shop</button>
+      <button onclick="openExpansion()">Expansion</button>
+      <button onclick="openLaws()">Laws</button>
+    </div>
+    <div class="header-tension">
+      <span class="header-tension-label">World Tension:</span>
+      <span class="header-tension-value">0%</span>
+    </div>
+  </div>
+</header>
+<div class="country-header" style="display: none;">
+  <div class="country-name">
+    <h2></h2>
+  </div>
+  <div class="country-header-actions">
+    <button onclick="declareWar()">Declare War</button>
+    <button onclick="formAlliance()">Form Alliance</button>
+    <button onclick="reformEmpire()">Reform Empire</button>
+    <button onclick="developNukes()">Develop Nuclear Weapons</button>
+    <button onclick="sendAid()">Send Foreign Aid</button>
+  </div>
+</div>
+  <div id="container" style="padding-top: 0;">
+    <div id="stats-panel" style="display: none; padding: 20px; background: #ffffff; box-shadow: 5px 0 15px rgba(0,0,0,0.1);">
+      <div class="stats">
+        <div class="stats-header">
+          <h3>Country Statistics</h3>
+        </div>
+        
+        <div class="stat-item">
+          <span>Population:</span>
+          <span id="population">0M</span>
+          <div class="stat-details">
+            Growth Rate: <span class="trend-indicator trend-up">+2.3%</span>
+          </div>
+          <div class="resource-info">
+            <span class="resource-label">Urban:</span>
+            <span>68%</span>
+          </div>
+          <div class="resource-info">
+            <span class="resource-label">Rural:</span>
+            <span>32%</span>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <span>GDP:</span>
+          <span id="gdp">&#x24;0B</span>
+          <div class="progress-bar"><div id="gdp-progress"></div></div>
+          <div class="stat-details">
+            Growth Rate: <span class="trend-indicator trend-up">+3.8%</span>
+          </div>
+          <div class="resource-info">
+            <span class="resource-label">Per Capita:</span>
+            <span id="gdp-per-capita">&#x24;0</span>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <span>Military Power:</span>
+          <span id="military">0</span>
+          <div class="progress-bar"><div id="military-progress"></div></div>
+          <div class="resource-info">
+            <span class="resource-label">Active:</span>
+            <span id="active-military">0</span>
+          </div>
+          <div class="resource-info">
+            <span class="resource-label">Reserve:</span>
+            <span id="reserve-military">0</span>
+          </div>
+        </div>
+      </div>
+      <div class="traits">
+        <div class="stats-header">
+          <h3>National Traits</h3>
+        </div>
+        
+        <div class="trait-item">
+          <span>Stability:</span>
+          <span id="stability">100%</span>
+          <div class="progress-bar"><div id="stability-progress"></div></div>
+          <div class="stat-details">
+            Approval Rating: <span class="trend-indicator">78%</span>
+          </div>
+        </div>
+
+        <div class="trait-item">
+          <span>Global Influence:</span>
+          <span id="influence">50%</span>
+          <div class="progress-bar"><div id="influence-progress"></div></div>
+          <div class="stat-details">
+            Diplomatic Relations: <span id="diplomatic-count">0</span>
+          </div>
+        </div>
+
+        <div class="trait-item">
+          <span>Technology Level:</span>
+          <span id="technology">50%</span>
+          <div class="progress-bar"><div id="technology-progress"></div></div>
+          <div class="resource-info">
+            <span class="resource-label">Research:</span>
+            <span id="research-points">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div id="map"></div>
+  
+    <div id="control-panel">
+      <div class="country-form">
+        <h2 style="font-size: 1.2em; margin-bottom: 15px;">Create Your Country</h2>
+        <input type="text" id="country-name" placeholder="Country Name">
+        <select id="government-type">
+          <option value="democracy">Democracy</option>
+          <option value="dictatorship">Dictatorship</option>
+          <option value="monarchy">Monarchy</option>
+          <option value="theocracy">Theocracy</option>
+          <option value="communist">Communist State</option>
+          <option value="oligarchy">Oligarchy</option>
+        </select>
+        <div id="map-instructions" style="display: none;">
+          Click on the map to place your country
+        </div>
+        <button id="create-country-btn" onclick="createCountry()">Establish Nation</button>
+      </div>
+      <div class="news-feed" id="news-feed" style="display: none;"></div>
+    </div>
+  </div>
+
+  <div id="critical-tension-warning" class="critical-tension-warning">
+    CRITICAL WORLD TENSION LEVEL!
+    <div style="font-size: 0.6em; margin-top: 10px; font-weight: 400;">
+      Global conflict imminent
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
